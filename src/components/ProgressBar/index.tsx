@@ -20,6 +20,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderTrack,
+  VStack,
 } from '@chakra-ui/react'
 import * as React from 'react'
 import { TbSailboat2 } from 'react-icons/tb'
@@ -78,7 +79,7 @@ const ProgressBar: React.FC = () => {
   }, [activeStep, currentValue, setActiveStep])
 
   return (
-    <>
+    <VStack spacing={3}>
       <NumberInput
         defaultValue={currentValue}
         min={0}
@@ -110,7 +111,7 @@ const ProgressBar: React.FC = () => {
           <Box as={TbSailboat2} />
         </SliderThumb>
       </Slider>
-    </>
+    </VStack>
   )
 }
 

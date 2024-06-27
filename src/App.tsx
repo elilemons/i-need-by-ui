@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 import {
   ChakraProvider,
   Box,
@@ -8,20 +8,33 @@ import {
   Code,
   Grid,
   theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
-import ProgressBar from './components/ProgressBar';
+  HStack,
+  Flex,
+  Container,
+} from '@chakra-ui/react'
+import { ColorModeSwitcher } from './ColorModeSwitcher'
+import { Logo } from './Logo'
+import ProgressBar from './components/ProgressBar'
+import { ProgressText } from './components/ProgressText'
+import { DonationText } from './components/DonationText'
 
 export const App = () => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
+    <Container minH='100vh' minW='100vw' fontSize='xl'>
+      <Flex justifyContent={'flex-end'}>
+        <ColorModeSwitcher />
+      </Flex>
+      <Flex justifyContent={'space-between'}>
+        <Box>
+          <DonationText />
+        </Box>
+        <Box>
           <ProgressBar />
-        </VStack>
-      </Grid>
-    </Box>
+        </Box>
+        <Box>
+          <ProgressText />
+        </Box>
+      </Flex>
+    </Container>
   </ChakraProvider>
 )
