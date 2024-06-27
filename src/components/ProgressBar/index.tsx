@@ -25,74 +25,12 @@ import {
 import * as React from 'react'
 import { TbSailboat2 } from 'react-icons/tb'
 
-// TODO Remove test code, use actual type
-type Status = {
-  label: string
-  min: number
-  max: number
+type Props = {
+  currentValue: number
 }
-
-const steps: Status[] = [
-  {
-    label: 'Run Aground',
-    min: 0,
-    max: 10,
-  },
-  {
-    label: 'Rising',
-    min: 11,
-    max: 90,
-  },
-  {
-    label: 'Charting a Course',
-    min: 91,
-    max: 99,
-  },
-  {
-    label: 'Sailing',
-    min: 100,
-    max: 100,
-  },
-]
-
-const ProgressBar: React.FC = () => {
-  const findActiveStep = (value: number) => {
-    return steps.reduce((activeStep, currentStep, index) => {
-      if (value >= currentStep.min && value <= currentStep.max) {
-        return index
-      }
-      return activeStep
-    }, 0)
-  }
-
-  const { activeStep, setActiveStep } = useSteps({
-    index: 0,
-    count: steps.length,
-  })
-
-  const [currentValue, setCurrentValue] = React.useState(0)
-
-  React.useEffect(() => {
-    if (currentValue <= steps[activeStep].max || currentValue >= steps[activeStep].min) {
-      setActiveStep(findActiveStep(currentValue))
-    }
-  }, [activeStep, currentValue, setActiveStep])
-
+const ProgressBar: React.FC<Props> = ({ currentValue }) => {
   return (
     <VStack spacing={3}>
-      <NumberInput
-        defaultValue={currentValue}
-        min={0}
-        onChange={value => setCurrentValue(Number(value))}
-        step={10}
-      >
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
-
       <Slider
         aria-label='slider-ex-3'
         value={currentValue}
